@@ -1,9 +1,14 @@
 package marsrover;
 
+import static marsrover.Direction.SOUTH;
+import static marsrover.Direction.WEST;
+
 public class Rover {
 
-  public Rover(Direction direction) {
+  private Direction direction;
 
+  public Rover(Direction direction) {
+    this.direction = direction;
   }
 
   public String getState() {
@@ -11,10 +16,13 @@ public class Rover {
   }
 
   public Rover perform(Command command) {
-    return this;
+    if (direction == Direction.NORTH)
+      return new Rover(WEST);
+    else
+      return new Rover(SOUTH);
   }
 
   public Direction getDirection() {
-    return Direction.WEST;
+    return direction;
   }
 }
