@@ -36,8 +36,10 @@ public enum Direction {
     switch (this) {
       case NORTH:
         return new Vector(0, 1);
-      default:
+      case EAST:
         return new Vector(1, 0);
+      default:
+        return new Vector(0, -1);
     }
   }
 

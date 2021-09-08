@@ -40,7 +40,8 @@ public class RoverShould {
   @Test
   @Parameters({
       "NORTH, 0:1:N",
-      "EAST, 1:0:E"})
+      "EAST, 1:0:E",
+      "SOUTH, 0:-1:S"})
   public void move(Direction initialDirection, String expectedState) {
     var initialRover = new Rover(initialDirection, new Vector(0, 0));
     var newRover = initialRover.perform(MOVE);
