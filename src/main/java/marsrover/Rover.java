@@ -22,8 +22,10 @@ public class Rover {
       return new Rover(WEST);
     else if (direction == WEST)
       return new Rover(SOUTH);
-    else
+    else if (direction == SOUTH)
       return new Rover(EAST);
+    else
+      return new Rover(NORTH);
   }
 
   public Direction getDirection() {

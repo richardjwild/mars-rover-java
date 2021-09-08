@@ -15,7 +15,8 @@ public class RoverShould {
   @Parameters({
       "NORTH, WEST",
       "WEST, SOUTH",
-      "SOUTH, EAST"})
+      "SOUTH, EAST",
+      "EAST, NORTH"})
   public void turn_left(Direction initialDirection, Direction expectedDirection) {
     var initialRover = new Rover(initialDirection);
     var newRover = initialRover.perform(LEFT);
