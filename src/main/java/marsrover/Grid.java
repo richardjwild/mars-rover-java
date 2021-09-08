@@ -21,12 +21,12 @@ public class Grid {
   }
 
   public Vector wrap(Vector position) {
-    int x = wrap(position.x, sizeX);
-    int y = wrap(position.y, sizeY);
+    int x = wrapValue(position.x, sizeX);
+    int y = wrapValue(position.y, sizeY);
     return new Vector(x, y);
   }
 
-  private int wrap(int value, int size) {
+  private int wrapValue(int value, int size) {
     if (value >= size)
       return value - size;
     else if (value < 0)
