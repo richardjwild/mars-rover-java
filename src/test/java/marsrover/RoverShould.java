@@ -39,12 +39,12 @@ public class RoverShould {
 
   @Test
   @Parameters({
-      "NORTH, 0:1:N",
-      "EAST, 1:0:E",
-      "SOUTH, 0:1:S",
-      "WEST, 1:0:W"})
+      "NORTH, 1:2:N",
+      "EAST, 2:1:E",
+      "SOUTH, 1:0:S",
+      "WEST, 0:1:W"})
   public void move(Direction initialDirection, String expectedState) {
-    var initialRover = new Rover(initialDirection, new Vector(0, 0), new Grid(2, 2));
+    var initialRover = new Rover(initialDirection, new Vector(1, 1), new Grid(3, 3));
     var newRover = initialRover.perform(MOVE);
     assertThat(newRover.getState()).isEqualTo(expectedState);
   }
