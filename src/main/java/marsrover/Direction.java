@@ -33,7 +33,12 @@ public enum Direction {
   }
 
   public Vector getTranslation() {
-    return new Vector(0, 1);
+    switch (this) {
+      case NORTH:
+        return new Vector(0, 1);
+      default:
+        return new Vector(1, 0);
+    }
   }
 
   Direction(String abbreviation) {
