@@ -23,8 +23,10 @@ public enum Direction {
         return EAST;
       case EAST:
         return SOUTH;
-      default:
+      case SOUTH:
         return WEST;
+      default:
+        return NORTH;
     }
   }
 }
