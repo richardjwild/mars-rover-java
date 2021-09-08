@@ -10,7 +10,7 @@ public class Vector {
     this.y = y;
   }
 
-  public Vector move(Vector translation) {
+  public Vector apply(Vector translation) {
     return new Vector(x + translation.x, y + translation.y);
   }
 

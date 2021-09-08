@@ -19,17 +19,21 @@ public class Rover {
   public Rover perform(Command command) {
     switch (command) {
       case LEFT:
-        return new Rover(direction.turnLeft(), position, world);
+        return turn(direction.getLeft());
       case RIGHT:
-        return new Rover(direction.turnRight(), position, world);
+        return turn(direction.getRight());
       default:
         return move();
     }
   }
 
+  private Rover turn(Direction newDirection) {
+    return new Rover(newDirection, position, world);
+  }
+
   private Rover move() {
-    Vector translation = direction.getTranslation();
-    Vector newPosition = position.move(translation);
+    var translation = direction.getTranslation();
+    var newPosition = position.apply(translation);
     if (world.isOccupied(newPosition))
       return new BlockedRover(direction, position, world);
     else

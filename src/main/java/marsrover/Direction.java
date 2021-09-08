@@ -6,7 +6,7 @@ public enum Direction {
 
   private String abbreviation;
 
-  public Direction turnLeft() {
+  public Direction getLeft() {
     switch (this) {
       case NORTH:
         return WEST;
@@ -19,7 +19,7 @@ public enum Direction {
     }
   }
 
-  public Direction turnRight() {
+  public Direction getRight() {
     switch (this) {
       case NORTH:
         return EAST;
