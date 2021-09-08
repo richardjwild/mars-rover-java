@@ -1,5 +1,7 @@
 package marsrover;
 
+import static marsrover.Command.LEFT;
+
 public class Rover {
 
   private Direction direction;
@@ -13,7 +15,10 @@ public class Rover {
   }
 
   public Rover perform(Command command) {
-    return new Rover(direction.turnLeft());
+    if (command == LEFT)
+      return new Rover(direction.turnLeft());
+    else
+      return new Rover(direction.turnRight());
   }
 
   public Direction getDirection() {

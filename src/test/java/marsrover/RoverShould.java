@@ -1,6 +1,7 @@
 package marsrover;
 
 import static marsrover.Command.LEFT;
+import static marsrover.Command.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import junitparams.JUnitParamsRunner;
@@ -20,6 +21,15 @@ public class RoverShould {
   public void turn_left(Direction initialDirection, Direction expectedDirection) {
     var initialRover = new Rover(initialDirection);
     var newRover = initialRover.perform(LEFT);
+    assertThat(newRover.getDirection()).isEqualTo(expectedDirection);
+  }
+
+  @Test
+  @Parameters({
+      "NORTH, EAST"})
+  public void turn_right(Direction initialDirection, Direction expectedDirection) {
+    var initialRover = new Rover(initialDirection);
+    var newRover = initialRover.perform(RIGHT);
     assertThat(newRover.getDirection()).isEqualTo(expectedDirection);
   }
 }

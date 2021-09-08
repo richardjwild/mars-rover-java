@@ -1,5 +1,5 @@
 package marsrover;
 
 public enum Command {
-  LEFT
+  RIGHT, LEFT
 }
