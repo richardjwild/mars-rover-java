@@ -2,7 +2,6 @@ package marsrover;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class AcceptanceTest {
@@ -22,7 +21,6 @@ public class AcceptanceTest {
   }
 
   @Test
-  @Ignore
   public void mars_rover_stops_when_meeting_an_obstacle() {
     var marsRoverDriver = new MarsRoverDriver(new Obstacle(0, 3));
     var rover = marsRoverDriver.drive("MMMM");

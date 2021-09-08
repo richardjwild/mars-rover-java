@@ -23,8 +23,17 @@ public class Rover {
       case RIGHT:
         return new Rover(direction.turnRight(), position, world);
       default:
-        return new Rover(direction, world.wrap(position.move(direction.getTranslation())), world);
+        return move();
     }
+  }
+
+  private Rover move() {
+    Vector translation = direction.getTranslation();
+    Vector newPosition = position.move(translation);
+    if (world.isOccupied(newPosition))
+      return new BlockedRover(direction, position, world);
+    else
+      return new Rover(direction, world.wrap(newPosition), world);
   }
 
 }

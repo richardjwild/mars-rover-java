@@ -18,4 +18,7 @@ public class Vector {
     return String.format("%d:%d", x, y);
   }
 
+  public boolean equals(Vector other) {
+    return x == other.x && y == other.y;
+  }
 }
