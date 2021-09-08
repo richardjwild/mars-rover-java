@@ -2,9 +2,9 @@ package marsrover;
 
 public class Rover {
 
-  private Direction direction;
-  private Vector position;
-  private Grid world;
+  private final Direction direction;
+  private final Vector position;
+  private final Grid world;
 
   public Rover(Direction direction, Vector position, Grid world) {
     this.direction = direction;
