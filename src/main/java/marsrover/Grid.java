@@ -10,16 +10,14 @@ public class Grid {
   private int sizeY;
   private final List<Obstacle> obstacles;
 
-  public Grid(int sizeX, int sizeY) {
-    this.sizeX = sizeX;
-    this.sizeY = sizeY;
-    obstacles = emptyList();
-  }
-
   public Grid(int sizeX, int sizeY, List<Obstacle> obstacles) {
     this.sizeX = sizeX;
     this.sizeY = sizeY;
     this.obstacles = obstacles;
+  }
+
+  public Grid(int sizeX, int sizeY) {
+    this(sizeX, sizeY, emptyList());
   }
 
   public Vector wrap(Vector position) {
