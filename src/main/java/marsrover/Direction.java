@@ -32,6 +32,10 @@ public enum Direction {
     }
   }
 
+  public Vector getTranslation() {
+    return new Vector(0, 1);
+  }
+
   Direction(String abbreviation) {
     this.abbreviation = abbreviation;
   }
