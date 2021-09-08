@@ -15,7 +15,6 @@ public class AcceptanceTest {
   }
 
   @Test
-  @Ignore
   public void mars_rover_wraps_around_at_edge_of_grid() {
     var marsRoverDriver = new MarsRoverDriver();
     var rover = marsRoverDriver.drive("MMMMMMMMMM");

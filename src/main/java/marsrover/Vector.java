@@ -2,8 +2,8 @@ package marsrover;
 
 public class Vector {
 
-  private final int x;
-  private final int y;
+  public final int x;
+  public final int y;
 
   public Vector(int x, int y) {
     this.x = x;

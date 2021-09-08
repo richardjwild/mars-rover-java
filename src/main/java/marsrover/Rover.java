@@ -4,10 +4,12 @@ public class Rover {
 
   private Direction direction;
   private Vector position;
+  private Grid world;
 
-  public Rover(Direction direction, Vector position) {
+  public Rover(Direction direction, Vector position, Grid world) {
     this.direction = direction;
     this.position = position;
+    this.world = world;
   }
 
   public String getState() {
@@ -17,11 +19,11 @@ public class Rover {
   public Rover perform(Command command) {
     switch (command) {
       case LEFT:
-        return new Rover(direction.turnLeft(), position);
+        return new Rover(direction.turnLeft(), position, world);
       case RIGHT:
-        return new Rover(direction.turnRight(), position);
+        return new Rover(direction.turnRight(), position, world);
       default:
-        return new Rover(direction, position.move(direction.getTranslation()));
+        return new Rover(direction, world.wrap(position.move(direction.getTranslation())), world);
     }
   }
 

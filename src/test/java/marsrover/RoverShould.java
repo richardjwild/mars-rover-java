@@ -20,7 +20,7 @@ public class RoverShould {
       "SOUTH, 0:0:E",
       "EAST, 0:0:N"})
   public void turn_left(Direction initialDirection, String expectedState) {
-    var initialRover = new Rover(initialDirection, new Vector(0, 0));
+    var initialRover = new Rover(initialDirection, new Vector(0, 0), new Grid(2, 2));
     var newRover = initialRover.perform(LEFT);
     assertThat(newRover.getState()).isEqualTo(expectedState);
   }
@@ -32,7 +32,7 @@ public class RoverShould {
       "SOUTH, 0:0:W",
       "WEST, 0:0:N"})
   public void turn_right(Direction initialDirection, String expectedState) {
-    var initialRover = new Rover(initialDirection, new Vector(0, 0));
+    var initialRover = new Rover(initialDirection, new Vector(0, 0), new Grid(2, 2));
     var newRover = initialRover.perform(RIGHT);
     assertThat(newRover.getState()).isEqualTo(expectedState);
   }
@@ -44,9 +44,15 @@ public class RoverShould {
       "SOUTH, 0:-1:S",
       "WEST, -1:0:W"})
   public void move(Direction initialDirection, String expectedState) {
-    var initialRover = new Rover(initialDirection, new Vector(0, 0));
+    var initialRover = new Rover(initialDirection, new Vector(0, 0), new Grid(2, 2));
     var newRover = initialRover.perform(MOVE);
     assertThat(newRover.getState()).isEqualTo(expectedState);
   }
 
+  @Test
+  public void wrap_when_passing_off_top_of_the_grid() {
+    var initialRover = new Rover(Direction.NORTH, new Vector(0, 1), new Grid(2, 2));
+    var newRover = initialRover.perform(MOVE);
+    assertThat(newRover.getState()).isEqualTo("0:0:N");
+  }
 }
