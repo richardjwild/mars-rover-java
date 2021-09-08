@@ -69,4 +69,11 @@ public class RoverShould {
     var newRover = initialRover.perform(MOVE);
     assertThat(newRover.getState()).isEqualTo("1:0:W");
   }
+
+  @Test
+  public void wrap_when_passing_off_right_of_the_grid() {
+    var initialRover = new Rover(Direction.EAST, new Vector(1, 0), new Grid(2, 2));
+    var newRover = initialRover.perform(MOVE);
+    assertThat(newRover.getState()).isEqualTo("0:0:E");
+  }
 }
