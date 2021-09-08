@@ -38,8 +38,10 @@ public enum Direction {
         return new Vector(0, 1);
       case EAST:
         return new Vector(1, 0);
-      default:
+      case SOUTH:
         return new Vector(0, -1);
+      default:
+        return new Vector(-1, 0);
     }
   }
 
