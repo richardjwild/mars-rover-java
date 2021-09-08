@@ -41,7 +41,7 @@ public class RoverShould {
   @Parameters({
       "NORTH, 0:1:N",
       "EAST, 1:0:E",
-      "SOUTH, 0:-1:S",
+      "SOUTH, 0:1:S",
       "WEST, -1:0:W"})
   public void move(Direction initialDirection, String expectedState) {
     var initialRover = new Rover(initialDirection, new Vector(0, 0), new Grid(2, 2));
@@ -54,5 +54,12 @@ public class RoverShould {
     var initialRover = new Rover(Direction.NORTH, new Vector(0, 1), new Grid(2, 2));
     var newRover = initialRover.perform(MOVE);
     assertThat(newRover.getState()).isEqualTo("0:0:N");
+  }
+
+  @Test
+  public void wrap_when_passing_off_bottom_of_the_grid() {
+    var initialRover = new Rover(Direction.SOUTH, new Vector(0, 0), new Grid(2, 2));
+    var newRover = initialRover.perform(MOVE);
+    assertThat(newRover.getState()).isEqualTo("0:1:S");
   }
 }
