@@ -2,7 +2,9 @@ package marsrover;
 
 public enum Direction {
 
-  NORTH, EAST, SOUTH, WEST;
+  NORTH("N"), EAST("E"), SOUTH("S"), WEST("W");
+
+  private String abbreviation;
 
   public Direction turnLeft() {
     switch (this) {
@@ -28,5 +30,13 @@ public enum Direction {
       default:
         return NORTH;
     }
+  }
+
+  Direction(String abbreviation) {
+    this.abbreviation = abbreviation;
+  }
+
+  public String getAbbreviation() {
+    return abbreviation;
   }
 }

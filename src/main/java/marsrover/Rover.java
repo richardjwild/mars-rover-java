@@ -11,7 +11,7 @@ public class Rover {
   }
 
   public String getState() {
-    return null;
+    return String.format("0:0:%s", direction.getAbbreviation());
   }
 
   public Rover perform(Command command) {
@@ -21,7 +21,4 @@ public class Rover {
       return new Rover(direction.turnRight());
   }
 
-  public Direction getDirection() {
-    return direction;
-  }
 }

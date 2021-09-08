@@ -14,25 +14,25 @@ public class RoverShould {
 
   @Test
   @Parameters({
-      "NORTH, WEST",
-      "WEST, SOUTH",
-      "SOUTH, EAST",
-      "EAST, NORTH"})
-  public void turn_left(Direction initialDirection, Direction expectedDirection) {
+      "NORTH, 0:0:W",
+      "WEST, 0:0:S",
+      "SOUTH, 0:0:E",
+      "EAST, 0:0:N"})
+  public void turn_left(Direction initialDirection, String expectedState) {
     var initialRover = new Rover(initialDirection);
     var newRover = initialRover.perform(LEFT);
-    assertThat(newRover.getDirection()).isEqualTo(expectedDirection);
+    assertThat(newRover.getState()).isEqualTo(expectedState);
   }
 
   @Test
   @Parameters({
-      "NORTH, EAST",
-      "EAST, SOUTH",
-      "SOUTH, WEST",
-      "WEST, NORTH"})
-  public void turn_right(Direction initialDirection, Direction expectedDirection) {
+      "NORTH, 0:0:E",
+      "EAST, 0:0:S",
+      "SOUTH, 0:0:W",
+      "WEST, 0:0:N"})
+  public void turn_right(Direction initialDirection, String expectedState) {
     var initialRover = new Rover(initialDirection);
     var newRover = initialRover.perform(RIGHT);
-    assertThat(newRover.getDirection()).isEqualTo(expectedDirection);
+    assertThat(newRover.getState()).isEqualTo(expectedState);
   }
 }
