@@ -32,13 +32,17 @@ public class Rover {
   }
 
   private Rover move() {
-    var translation = heading.getTranslation();
-    var nextPosition = position.apply(translation);
-    var newPosition = world.wrap(nextPosition);
+    var newPosition = calculateNewPosition();
     if (world.isOccupied(newPosition))
       return new BlockedRover(heading, position, world);
     else
       return new Rover(heading, newPosition, world);
+  }
+
+  private Vector calculateNewPosition() {
+    var translation = heading.getTranslation();
+    var nextPosition = position.apply(translation);
+    return world.wrap(nextPosition);
   }
 
 }
