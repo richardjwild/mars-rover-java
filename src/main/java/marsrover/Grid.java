@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Grid {
 
-  private int sizeX;
-  private int sizeY;
+  private final int sizeX;
+  private final int sizeY;
   private final List<Obstacle> obstacles;
 
   public Grid(int sizeX, int sizeY, List<Obstacle> obstacles) {
