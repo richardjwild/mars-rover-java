@@ -33,11 +33,12 @@ public class Rover {
 
   private Rover move() {
     var translation = heading.getTranslation();
-    var newPosition = position.apply(translation);
+    var nextPosition = position.apply(translation);
+    var newPosition = world.wrap(nextPosition);
     if (world.isOccupied(newPosition))
       return new BlockedRover(heading, position, world);
     else
-      return new Rover(heading, world.wrap(newPosition), world);
+      return new Rover(heading, newPosition, world);
   }
 
 }
