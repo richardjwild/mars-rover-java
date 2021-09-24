@@ -27,11 +27,13 @@ public class Grid {
   }
 
   private int wrapValue(int value, int size) {
-    if (value >= size)
+    if (value >= size) {
       return value - size;
-    else if (value < 0)
+    } else if (value < 0) {
       return value + size;
-    else return value;
+    } else {
+      return value;
+    }
   }
 
   public boolean isOccupied(Vector position) {
