@@ -2,9 +2,11 @@ package marsrover;
 
 public class MarsRoverDriver {
 
-  private Rover rover = new NorthFacingRover(0, 0);
+  private Rover rover;
 
-  public MarsRoverDriver(Obstacle... obstacles) { }
+  public MarsRoverDriver(Environment environment) {
+    this.rover = new NorthFacingRover(0, 0, environment);
+  }
 
   public Rover drive(String commands) {
     for (char command: commands.toCharArray()) {
