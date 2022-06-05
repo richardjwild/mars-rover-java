@@ -1,15 +1,12 @@
 package marsrover;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import junitparams.converters.Param;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-@RunWith(JUnitParamsRunner.class)
-public class AcceptanceTest {
+class AcceptanceTest {
 
   @Test
   public void mars_rover_drives_around() {
@@ -25,8 +22,8 @@ public class AcceptanceTest {
     assertThat(rover.getState()).isEqualTo("0:0:N");
   }
 
-  @Test
-  @Parameters({
+  @ParameterizedTest
+  @CsvSource({
       "MMMM,O:0:2:N",
       "RMMMMMMMMMLMMMRM,O:9:3:E" // rover meets obstacle immediately after wrapping around
   })
