@@ -5,168 +5,179 @@ import net.jqwik.api.*;
 import static marsrover.Command.*;
 import static marsrover.Direction.*;
 
-@Group
-class Rover_shall {
+class A_rover {
 
     private static final int WIDTH = 10;
     private static final int HEIGHT = 10;
     private static final Grid WORLD = new Grid(WIDTH, HEIGHT);
 
     @Group
-    class given_facing_north {
+    class when_facing_north {
 
         private Rover rover(int x, int y) {
             return new Rover(NORTH, new Vector(x, y), WORLD);
         }
 
         @Group
-        class when_turning_right {
+        class on_turning_right {
 
             @Property
-            boolean face_east_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
+            boolean faces_east_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, EAST));
             }
         }
 
         @Group
-        class when_turning_left {
+        class on_turning_left {
 
             @Property
-            boolean face_west_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
+            boolean faces_west_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, WEST));
             }
         }
 
         @Group
-        class when_moving_forward {
+        class on_moving_forward {
 
             @Property
-            boolean move_north_with_direction_unchanged(@ForAll("x positions") int x, @ForAll("y positions except northern edge") int y) {
+            boolean moves_north_with_direction_unchanged(
+                    @ForAll("x positions") int x,
+                    @ForAll("y positions except northern edge") int y)
+            {
                 return rover(x, y).perform(MOVE).getState().equals(expectedState(x, y + 1, NORTH));
             }
 
             @Property
-            boolean wrap_over_northern_edge_of_grid(@ForAll("x positions") int x) {
+            boolean wraps_over_northern_edge_of_grid(@ForAll("x positions") int x) {
                 return rover(x, HEIGHT - 1).perform(MOVE).getState().equals(expectedState(x, 0, NORTH));
             }
         }
     }
 
     @Group
-    class given_facing_east {
+    class when_facing_east {
 
         private Rover rover(int x, int y) {
             return new Rover(EAST, new Vector(x, y), WORLD);
         }
 
         @Group
-        class when_turning_right {
+        class on_turning_right {
 
             @Property
-            boolean face_south_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
+            boolean faces_south_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, SOUTH));
             }
         }
 
         @Group
-        class when_turning_left {
+        class on_turning_left {
 
             @Property
-            boolean face_north_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
+            boolean faces_north_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, NORTH));
             }
         }
 
         @Group
-        class when_moving_forward {
+        class on_moving_forward {
 
             @Property
-            boolean move_east_with_direction_unchanged(@ForAll("x positions except eastern edge") int x, @ForAll("y positions") int y) {
+            boolean moves_east_with_direction_unchanged(
+                    @ForAll("x positions except eastern edge") int x,
+                    @ForAll("y positions") int y)
+            {
                 return rover(x, y).perform(MOVE).getState().equals(expectedState(x + 1, y, EAST));
             }
 
             @Property
-            boolean wrap_over_eastern_edge_of_grid(@ForAll("y positions") int y) {
+            boolean wraps_over_eastern_edge_of_grid(@ForAll("y positions") int y) {
                 return rover(WIDTH - 1, y).perform(MOVE).getState().equals(expectedState(0, y, EAST));
             }
         }
     }
 
     @Group
-    class given_facing_south {
+    class when_facing_south {
 
         private Rover rover(int x, int y) {
             return new Rover(SOUTH, new Vector(x, y), WORLD);
         }
 
         @Group
-        class when_turning_right {
+        class on_turning_right {
 
             @Property
-            boolean face_west_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
+            boolean faces_west_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, WEST));
             }
         }
 
         @Group
-        class when_turning_left {
+        class on_turning_left {
 
             @Property
-            boolean face_east_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
+            boolean faces_east_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, EAST));
             }
         }
 
         @Group
-        class when_moving_forward {
+        class on_moving_forward {
 
             @Property
-            boolean move_south_with_direction_unchanged(@ForAll("x positions") int x, @ForAll("y positions except southern edge") int y) {
+            boolean moves_south_with_direction_unchanged(
+                    @ForAll("x positions") int x,
+                    @ForAll("y positions except southern edge") int y)
+            {
                 return rover(x, y).perform(MOVE).getState().equals(expectedState(x, y - 1, SOUTH));
             }
 
             @Property
-            boolean wrap_over_southern_edge_of_grid(@ForAll("x positions") int x) {
+            boolean wraps_over_southern_edge_of_grid(@ForAll("x positions") int x) {
                 return rover(x, 0).perform(MOVE).getState().equals(expectedState(x, HEIGHT - 1, SOUTH));
             }
         }
     }
 
     @Group
-    class given_facing_west {
+    class when_facing_west {
 
         private Rover rover(int x, int y) {
             return new Rover(WEST, new Vector(x, y), WORLD);
         }
 
         @Group
-        class when_turning_right {
+        class on_turning_right {
 
             @Property
-            boolean face_north_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
+            boolean faces_north_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, NORTH));
             }
         }
 
         @Group
-        class when_turning_left {
+        class on_turning_left {
 
             @Property
-            boolean face_south_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
+            boolean faces_south_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, SOUTH));
             }
         }
 
         @Group
-        class when_moving_forward {
+        class on_moving_forward {
 
             @Property
-            boolean move_west_with_direction_unchanged(@ForAll("x positions except western edge") int x, @ForAll("y positions") int y) {
+            boolean moves_west_with_direction_unchanged(
+                    @ForAll("x positions except western edge") int x,
+                    @ForAll("y positions") int y)
+            {
                 return rover(x, y).perform(MOVE).getState().equals(expectedState(x - 1, y, WEST));
             }
 
             @Property
-            boolean wrap_over_western_edge_of_grid(@ForAll("y positions") int y) {
+            boolean wraps_over_western_edge_of_grid(@ForAll("y positions") int y) {
                 return rover(0, y).perform(MOVE).getState().equals(expectedState(WIDTH - 1, y, WEST));
             }
         }

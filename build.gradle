@@ -13,6 +13,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    include '**/*Test.class'
-    include '**/*_shall.class'
 }
