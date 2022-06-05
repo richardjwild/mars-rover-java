@@ -23,10 +23,7 @@ class Rover_shall {
         class when_turning_right {
 
             @Property
-            boolean face_east_with_position_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean face_east_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, EAST));
             }
         }
@@ -35,10 +32,7 @@ class Rover_shall {
         class when_turning_left {
 
             @Property
-            boolean face_west_with_position_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean face_west_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, WEST));
             }
         }
@@ -47,10 +41,7 @@ class Rover_shall {
         class when_moving_forward {
 
             @Property
-            boolean increment_its_y_position_with_direction_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions except northern edge") int y)
-            {
+            boolean move_north_with_direction_unchanged(@ForAll("x positions") int x, @ForAll("y positions except northern edge") int y) {
                 return rover(x, y).perform(MOVE).getState().equals(expectedState(x, y + 1, NORTH));
             }
 
@@ -72,10 +63,7 @@ class Rover_shall {
         class when_turning_right {
 
             @Property
-            boolean face_south_with_position_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean face_south_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, SOUTH));
             }
         }
@@ -84,10 +72,7 @@ class Rover_shall {
         class when_turning_left {
 
             @Property
-            boolean face_north_with_position_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean face_north_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, NORTH));
             }
         }
@@ -96,10 +81,7 @@ class Rover_shall {
         class when_moving_forward {
 
             @Property
-            boolean increment_its_x_position_with_direction_unchanged(
-                    @ForAll("x positions except eastern edge") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean move_east_with_direction_unchanged(@ForAll("x positions except eastern edge") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(MOVE).getState().equals(expectedState(x + 1, y, EAST));
             }
 
@@ -121,10 +103,7 @@ class Rover_shall {
         class when_turning_right {
 
             @Property
-            boolean face_west_with_position_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean face_west_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, WEST));
             }
         }
@@ -133,10 +112,7 @@ class Rover_shall {
         class when_turning_left {
 
             @Property
-            boolean face_east_with_position_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean face_east_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, EAST));
             }
         }
@@ -145,10 +121,7 @@ class Rover_shall {
         class when_moving_forward {
 
             @Property
-            boolean decrement_its_y_position_with_direction_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions except southern edge") int y)
-            {
+            boolean move_south_with_direction_unchanged(@ForAll("x positions") int x, @ForAll("y positions except southern edge") int y) {
                 return rover(x, y).perform(MOVE).getState().equals(expectedState(x, y - 1, SOUTH));
             }
 
@@ -170,10 +143,7 @@ class Rover_shall {
         class when_turning_right {
 
             @Property
-            boolean face_north_with_position_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean face_north_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, NORTH));
             }
         }
@@ -182,10 +152,7 @@ class Rover_shall {
         class when_turning_left {
 
             @Property
-            boolean face_south_with_position_unchanged(
-                    @ForAll("x positions") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean face_south_with_position_unchanged(@ForAll("x positions") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, SOUTH));
             }
         }
@@ -194,10 +161,7 @@ class Rover_shall {
         class when_moving_forward {
 
             @Property
-            boolean decrement_its_x_position_with_direction_unchanged(
-                    @ForAll("x positions except western edge") int x,
-                    @ForAll("y positions") int y)
-            {
+            boolean move_west_with_direction_unchanged(@ForAll("x positions except western edge") int x, @ForAll("y positions") int y) {
                 return rover(x, y).perform(MOVE).getState().equals(expectedState(x - 1, y, WEST));
             }
 
