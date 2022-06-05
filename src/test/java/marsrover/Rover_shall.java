@@ -50,7 +50,7 @@ class Rover_shall {
             @Property
             boolean increment_its_y_position_with_direction_unchanged(
                     @ForAll("x positions") int x,
-                    @ForAll("y positions except north edge") int y)
+                    @ForAll("y positions except northern edge") int y)
             {
                 var rover = new Rover(NORTH, new Vector(x, y), WORLD);
                 var expectedState = format("%d:%d:%s", x, y + 1, NORTH.getAbbreviation());
@@ -102,7 +102,7 @@ class Rover_shall {
 
             @Property
             boolean increment_its_x_position_with_direction_unchanged(
-                    @ForAll("x positions except east edge") int x,
+                    @ForAll("x positions except eastern edge") int x,
                     @ForAll("y positions") int y)
             {
                 var rover = new Rover(EAST, new Vector(x, y), WORLD);
@@ -156,7 +156,7 @@ class Rover_shall {
             @Property
             boolean decrement_its_y_position_with_direction_unchanged(
                     @ForAll("x positions") int x,
-                    @ForAll("y positions except south edge") int y)
+                    @ForAll("y positions except southern edge") int y)
             {
                 var rover = new Rover(SOUTH, new Vector(x, y), WORLD);
                 var expectedState = format("%d:%d:%s", x, y - 1, SOUTH.getAbbreviation());
@@ -208,7 +208,7 @@ class Rover_shall {
 
             @Property
             boolean decrement_its_x_position_with_direction_unchanged(
-                    @ForAll("x positions except west edge") int x,
+                    @ForAll("x positions except western edge") int x,
                     @ForAll("y positions") int y)
             {
                 var rover = new Rover(WEST, new Vector(x, y), WORLD);
@@ -230,13 +230,13 @@ class Rover_shall {
         return Arbitraries.integers().between(0, WIDTH - 1);
     }
 
-    @Provide("x positions except east edge")
-    Arbitrary<Integer> xPositionsExceptEastEdge() {
+    @Provide("x positions except eastern edge")
+    Arbitrary<Integer> xPositionsExceptEasternEdge() {
         return Arbitraries.integers().between(0, WIDTH - 2);
     }
 
-    @Provide("x positions except west edge")
-    Arbitrary<Integer> xPositionsExceptWestEdge() {
+    @Provide("x positions except western edge")
+    Arbitrary<Integer> xPositionsExceptWesternEdge() {
         return Arbitraries.integers().between(1, WIDTH - 1);
     }
 
@@ -245,13 +245,13 @@ class Rover_shall {
         return Arbitraries.integers().between(0, HEIGHT - 1);
     }
 
-    @Provide("y positions except north edge")
-    Arbitrary<Integer> yPositionsExceptNorthEdge() {
+    @Provide("y positions except northern edge")
+    Arbitrary<Integer> yPositionsExceptNorthernEdge() {
         return Arbitraries.integers().between(0, HEIGHT - 2);
     }
 
-    @Provide("y positions except south edge")
-    Arbitrary<Integer> yPositionsExceptSouthEdge() {
+    @Provide("y positions except southern edge")
+    Arbitrary<Integer> yPositionsExceptSouthernEdge() {
         return Arbitraries.integers().between(1, HEIGHT - 1);
     }
 
