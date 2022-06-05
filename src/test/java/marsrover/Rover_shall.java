@@ -15,6 +15,10 @@ class Rover_shall {
     @Group
     class given_facing_north {
 
+        private Rover rover(int x, int y) {
+            return new Rover(NORTH, new Vector(x, y), WORLD);
+        }
+
         @Group
         class when_turning_right {
 
@@ -23,8 +27,7 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(NORTH, new Vector(x, y), WORLD);
-                return rover.perform(RIGHT).getState().equals(expectedState(x, y, EAST));
+                return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, EAST));
             }
         }
 
@@ -36,8 +39,7 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(NORTH, new Vector(x, y), WORLD);
-                return rover.perform(LEFT).getState().equals(expectedState(x, y, WEST));
+                return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, WEST));
             }
         }
 
@@ -49,20 +51,22 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions except northern edge") int y)
             {
-                var rover = new Rover(NORTH, new Vector(x, y), WORLD);
-                return rover.perform(MOVE).getState().equals(expectedState(x, y + 1, NORTH));
+                return rover(x, y).perform(MOVE).getState().equals(expectedState(x, y + 1, NORTH));
             }
 
             @Property
             boolean wrap_over_northern_edge_of_grid(@ForAll("x positions") int x) {
-                var rover = new Rover(NORTH, new Vector(x, HEIGHT - 1), WORLD);
-                return rover.perform(MOVE).getState().equals(expectedState(x, 0, NORTH));
+                return rover(x, HEIGHT - 1).perform(MOVE).getState().equals(expectedState(x, 0, NORTH));
             }
         }
     }
 
     @Group
     class given_facing_east {
+
+        private Rover rover(int x, int y) {
+            return new Rover(EAST, new Vector(x, y), WORLD);
+        }
 
         @Group
         class when_turning_right {
@@ -72,8 +76,7 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(EAST, new Vector(x, y), WORLD);
-                return rover.perform(RIGHT).getState().equals(expectedState(x, y, SOUTH));
+                return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, SOUTH));
             }
         }
 
@@ -85,8 +88,7 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(EAST, new Vector(x, y), WORLD);
-                return rover.perform(LEFT).getState().equals(expectedState(x, y, NORTH));
+                return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, NORTH));
             }
         }
 
@@ -98,20 +100,22 @@ class Rover_shall {
                     @ForAll("x positions except eastern edge") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(EAST, new Vector(x, y), WORLD);
-                return rover.perform(MOVE).getState().equals(expectedState(x + 1, y, EAST));
+                return rover(x, y).perform(MOVE).getState().equals(expectedState(x + 1, y, EAST));
             }
 
             @Property
             boolean wrap_over_eastern_edge_of_grid(@ForAll("y positions") int y) {
-                var rover = new Rover(EAST, new Vector(WIDTH - 1, y), WORLD);
-                return rover.perform(MOVE).getState().equals(expectedState(0, y, EAST));
+                return rover(WIDTH - 1, y).perform(MOVE).getState().equals(expectedState(0, y, EAST));
             }
         }
     }
 
     @Group
     class given_facing_south {
+
+        private Rover rover(int x, int y) {
+            return new Rover(SOUTH, new Vector(x, y), WORLD);
+        }
 
         @Group
         class when_turning_right {
@@ -121,8 +125,7 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(SOUTH, new Vector(x, y), WORLD);
-                return rover.perform(RIGHT).getState().equals(expectedState(x, y, WEST));
+                return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, WEST));
             }
         }
 
@@ -134,8 +137,7 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(SOUTH, new Vector(x, y), WORLD);
-                return rover.perform(LEFT).getState().equals(expectedState(x, y, EAST));
+                return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, EAST));
             }
         }
 
@@ -147,20 +149,22 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions except southern edge") int y)
             {
-                var rover = new Rover(SOUTH, new Vector(x, y), WORLD);
-                return rover.perform(MOVE).getState().equals(expectedState(x, y - 1, SOUTH));
+                return rover(x, y).perform(MOVE).getState().equals(expectedState(x, y - 1, SOUTH));
             }
 
             @Property
             boolean wrap_over_southern_edge_of_grid(@ForAll("x positions") int x) {
-                var rover = new Rover(SOUTH, new Vector(x, 0), WORLD);
-                return rover.perform(MOVE).getState().equals(expectedState(x, HEIGHT - 1, SOUTH));
+                return rover(x, 0).perform(MOVE).getState().equals(expectedState(x, HEIGHT - 1, SOUTH));
             }
         }
     }
 
     @Group
     class given_facing_west {
+
+        private Rover rover(int x, int y) {
+            return new Rover(WEST, new Vector(x, y), WORLD);
+        }
 
         @Group
         class when_turning_right {
@@ -170,8 +174,7 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(WEST, new Vector(x, y), WORLD);
-                return rover.perform(RIGHT).getState().equals(expectedState(x, y, NORTH));
+                return rover(x, y).perform(RIGHT).getState().equals(expectedState(x, y, NORTH));
             }
         }
 
@@ -183,8 +186,7 @@ class Rover_shall {
                     @ForAll("x positions") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(WEST, new Vector(x, y), WORLD);
-                return rover.perform(LEFT).getState().equals(expectedState(x, y, SOUTH));
+                return rover(x, y).perform(LEFT).getState().equals(expectedState(x, y, SOUTH));
             }
         }
 
@@ -196,14 +198,12 @@ class Rover_shall {
                     @ForAll("x positions except western edge") int x,
                     @ForAll("y positions") int y)
             {
-                var rover = new Rover(WEST, new Vector(x, y), WORLD);
-                return rover.perform(MOVE).getState().equals(expectedState(x - 1, y, WEST));
+                return rover(x, y).perform(MOVE).getState().equals(expectedState(x - 1, y, WEST));
             }
 
             @Property
             boolean wrap_over_western_edge_of_grid(@ForAll("y positions") int y) {
-                var rover = new Rover(WEST, new Vector(0, y), WORLD);
-                return rover.perform(MOVE).getState().equals(expectedState(WIDTH - 1, y, WEST));
+                return rover(0, y).perform(MOVE).getState().equals(expectedState(WIDTH - 1, y, WEST));
             }
         }
     }
