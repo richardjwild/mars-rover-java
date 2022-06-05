@@ -6,3 +6,4 @@ gradle
 *.iws
 out
 build
+.jqwik-database
