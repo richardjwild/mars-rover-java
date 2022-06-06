@@ -5,6 +5,7 @@ import net.jqwik.api.*;
 import static marsrover.Command.*;
 import static marsrover.Direction.*;
 
+@Group
 class A_rover {
 
     private static final int WIDTH = 10;
